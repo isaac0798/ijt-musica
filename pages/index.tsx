@@ -3,23 +3,36 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react';
 
-const Home: NextPage = () => {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '66ec3e99f0mshb514d6b2c37db99p166d41jsn622683dcbfe1',
-      'X-RapidAPI-Host': 'spotify81.p.rapidapi.com',
-    },
-  };
+export const getStaticProps = async () => {
+     const options = {
+       method: 'GET',
+       headers: {
+         'X-RapidAPI-Key': '66ec3e99f0mshb514d6b2c37db99p166d41jsn622683dcbfe1',
+         'X-RapidAPI-Host': 'spotify81.p.rapidapi.com',
+       },
+     };
 
-  fetch(
-    'https://spotify81.p.rapidapi.com/album_metadata?id=3IBcauSj5M2A6lTeffJzdv',
-    options
-  )
-    .then((response) => response.json())
-    .then((response) => console.log(response))
-    .catch((err) => console.error(err));
+     const response = await fetch(
+       'https://spotify81.p.rapidapi.com/album_metadata?id=3IBcauSj5M2A6lTeffJzdv',
+       options
+     );
 
+     const data = await response.json();
+
+     console.log(data);
+
+     return {props: {
+        albumData: data
+     }}
+  }
+
+interface albumProps {
+  albumData: any
+}
+
+const Home: NextPage = (props: albumProps) => {
+  const coverArtHeroSection = props.albumData.data.album.coverArt.sources[0];
+  
 
   return (
     //header:- logo/ search bar
@@ -31,12 +44,15 @@ const Home: NextPage = () => {
       <Header />
       <main className='h-[80%] border border-red-600 border-dashed'>
         <article className='h-full flex'>
-          <div id='sideMenu' className='h-full border border-green-600 border-dashed'>
+          <div
+            id='sideMenu'
+            className='h-full border border-green-600 border-dashed'
+          >
             <div id='appNav'>app</div>
             <div id='personalNav'>personal</div>
           </div>
           <div id='heroSection'>
-           {/*  <Image src='/HeroSection.png' alt='hero section' width={500} height={500} /> */}
+            <Image src={coverArtHeroSection.url} alt='hero section' width={coverArtHeroSection.width} height={coverArtHeroSection.height} />
           </div>
           <div id='topChartSection'>Chart section</div>
         </article>
