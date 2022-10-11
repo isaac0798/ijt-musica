@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin></link>
           <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet"></link>
         </Head>
-        <body>
+        <body className='h-screen'>
           <Main />
           <NextScript />
         </body>
