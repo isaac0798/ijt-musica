@@ -4,6 +4,23 @@ import Image from 'next/image'
 import React from 'react';
 
 const Home: NextPage = () => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '66ec3e99f0mshb514d6b2c37db99p166d41jsn622683dcbfe1',
+      'X-RapidAPI-Host': 'spotify81.p.rapidapi.com',
+    },
+  };
+
+  fetch(
+    'https://spotify81.p.rapidapi.com/album_metadata?id=3IBcauSj5M2A6lTeffJzdv',
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+
+
   return (
     //header:- logo/ search bar
     //sidebar
