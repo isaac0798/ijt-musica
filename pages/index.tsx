@@ -58,10 +58,18 @@ const Home: NextPage = (props: IProps) => {
 
   return (
     //header:- logo/ search bar
+    //  TODO: Implement search bar functionality and styling
     //sidebar
+    // TODO: Add icons to sidebar
     //main
-    // -- hero area // -- top charts area(global charts) //
-    //  -- new releases // --popular in your area(uk charts)
+    // -- hero area 
+    // TODO: Add text ontop of artist cover image
+    // -- top charts area(global charts) 
+    // TODO: implement chart section
+    // TODO: -- new releases
+    // TODO: --popular in your area(uk charts)
+    //TODO: Music Player
+    // TODO: Collection Screen
     <div className='h-screen'>
       <Header />
       <main className='h-[80%] bg-[#1D2123] border border-red-600 border-dashed'>
