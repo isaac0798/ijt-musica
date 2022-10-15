@@ -8,7 +8,7 @@ interface IVisual {
 }
 
 type IArtist = {
-  followers: Number
+  followers: number
   genres: Array<String>
   description: string
   id: string

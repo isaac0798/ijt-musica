@@ -62,9 +62,22 @@ interface IPlaylist {
   total_time: string
 }
 
+interface IAlbum {
+  name: string;
+  songs: Array<ISong>;
+  cover: string;
+}
+
+interface ISong {
+  name: string;
+  length: string;
+  listens: number;
+}
+
 interface IMonthlyListeners {
   rank: Number;
   artist: String;
+  albums: Array<IAlbum>;
   monthlyListeners: Number;
   playlist: Array<IPlaylist>;
   profile: IProfile;
@@ -134,6 +147,27 @@ const Home: NextPage = (props: IProps) => {
     </li>
   ));
 
+  const newReleases = props.top20ArtistsData.map((artist) => (
+    <li
+      key={artist.rank}
+      className='text-white w-max border border-dashed border-red-700 shrink-0 flex flex-col h-1/12'
+    >
+      <div>
+        <Image
+          className={`rounded-2xl`}
+          src={artist.albums[0].cover}
+          alt='album pic'
+          width={150}
+          height={150}
+        />
+        <div>
+          <p className='overflow-hidden'>{artist.albums[0].name}</p>
+          <p className='opacity-50'>{artist.profile.name}</p>
+        </div>
+      </div>
+    </li>
+  ));
+
   return (
     <div className='h-screen'>
       <Header />
@@ -146,50 +180,61 @@ const Home: NextPage = (props: IProps) => {
             <div id='appNav'>app</div>
             <div id='personalNav'>personal</div>
           </div>
-          <div id='showbiz' className='flex h-1/2 w-full justify-between'>
-            <div
-              id='heroSection'
-              className='w-1/2 flex items-center justify-center relative'
-            >
-              <div className='w-3/4 h-3/4 flex items-center relative'>
-                <Image
-                  className={`rounded-2xl w-full opacity-70`}
-                  src={coverArtHeroSection}
-                  alt='hero section'
-                  layout='fill'
-                  objectFit='fill'
-                />
-                <div className='flex flex-col h-4/5 justify-around ml-5'>
-                  <h1 className='text-white text-5xl z-10'>
-                    {props.artistData[0].name}
-                  </h1>
-                  <div className='text-white text-2xl z-10'>
-                    {props.artistData[0].genres[0]}
-                  </div>
-                  <div className='text-white text-sm z-10'>
-                    {props.artistData[0].description}
-                  </div>
-                  <div className='flex items-center w-fit justify-between'>
-                    <Image src={'/followers.svg'} alt='followers' width={50} height={50}/>
-                    <div className='text-white text-sm z-10 ml-3'>
-                      {`${Intl.NumberFormat('en-US', {
-                        notation: 'compact',
-                        maximumFractionDigits: 1,
-                      }).format(props.artistData[0].followers)} followers`}
+          <div className='w-full'>
+            <div id='showbiz' className='flex h-1/2 w-full justify-between'>
+              <div
+                id='heroSection'
+                className='w-1/2 flex items-center justify-center relative'
+              >
+                <div className='w-3/4 h-3/4 flex items-center relative'>
+                  <Image
+                    className={`rounded-2xl w-full opacity-70`}
+                    src={coverArtHeroSection}
+                    alt='hero section'
+                    layout='fill'
+                    objectFit='fill'
+                  />
+                  <div className='flex flex-col h-4/5 justify-around ml-5'>
+                    <h1 className='text-white text-5xl z-10'>
+                      {props.artistData[0].name}
+                    </h1>
+                    <div className='text-white text-2xl z-10'>
+                      {props.artistData[0].genres[0]}
+                    </div>
+                    <div className='text-white text-sm z-10'>
+                      {props.artistData[0].description}
+                    </div>
+                    <div className='flex items-center w-fit justify-between'>
+                      <Image
+                        src={'/followers.svg'}
+                        alt='followers'
+                        width={50}
+                        height={50}
+                      />
+                      <div className='text-white text-sm z-10 ml-3'>
+                        {`${Intl.NumberFormat('en-US', {
+                          notation: 'compact',
+                          maximumFractionDigits: 1,
+                        }).format(props.artistData[0].followers)} followers`}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div id='topChartSection' className='w-1/2'>
-              <div className='flex flex-col h-full ml-5 justify-between'>
-                <h1 className='text-white text-2xl font-extrabold'>
-                  Top Charts
-                </h1>
-                <ul className='flex flex-col justify-evenly items-center h-full w-3/4'>
-                  {listItems}
-                </ul>
+              <div id='topChartSection' className='w-1/2'>
+                <div className='flex flex-col h-full ml-5 justify-between'>
+                  <h1 className='text-white text-2xl font-extrabold'>
+                    Top Charts
+                  </h1>
+                  <ul className='flex flex-col justify-evenly items-center h-full w-3/4'>
+                    {listItems}
+                  </ul>
+                </div>
               </div>
+            </div>
+            <div id='albumBiz' className='flex flex-col h-1/2 text-white'>
+              <div>New Releases</div>
+              <ul className='flex overflow-y-auto space-x-5'>{newReleases}</ul>
             </div>
           </div>
         </article>

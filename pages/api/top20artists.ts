@@ -22,9 +22,22 @@ interface IPlaylist {
   total_time: string
 }
 
+interface IAlbum {
+  name: string
+  songs: Array<ISong>
+  cover: string
+}
+
+interface ISong {
+  name: string
+  length: string
+  listens: number
+}
+
 interface IMonthlyListeners {
   rank: Number;
   artist: String;
+  albums: Array<IAlbum>
   monthlyListeners: Number;
   playlist: Array<IPlaylist>;
   profile: IProfile;
@@ -37,6 +50,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 1,
       artist: 'Ed Sheeran',
       monthlyListeners: 78.15,
+      albums: [
+        {
+          name: 'Beautiful Mind',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e028693303a558cd66d779d49f1',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -67,6 +88,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 2,
       artist: 'The Weeknd',
       monthlyListeners: 77.36,
+      albums: [
+        {
+          name: 'SoulFly (Deluxe Version)',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e021234ddd76451088911b0d79f',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -80,7 +109,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'The Weeknd',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -97,6 +126,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 3,
       artist: 'Justin Bieber',
       monthlyListeners: 69.62,
+      albums: [
+        {
+          name: 'SoulFly',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e02362c0f3c4a54d766eb7b654a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -110,7 +147,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'Justin Bieber',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -127,6 +164,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 4,
       artist: 'Harry Styles',
       monthlyListeners: 66.92,
+      albums: [
+        {
+          name: 'Pray 4 Love (Deluxe)',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e02b3d45b74fdf99c9cc88497d3',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -140,7 +185,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'Harry Styles',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -157,6 +202,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 5,
       artist: 'David Guetta',
       monthlyListeners: 66.85,
+      albums: [
+        {
+          name: 'Pray 4 Love',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e02759e4cc8e664b1d9e5c259cb',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -170,7 +223,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'David Guetta',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -187,6 +240,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 6,
       artist: 'Bad Bunny',
       monthlyListeners: 63.91,
+      albums: [
+        {
+          name: 'Ghetto Gospel',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e023391232da57e4827dac8aba5',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -200,7 +261,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'Bad Bunny',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -217,6 +278,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 7,
       artist: 'Dua Lipa',
       monthlyListeners: 62.39,
+      albums: [
+        {
+          name: 'PTSD',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e02ae9b6f01afeeed8900cf8e06',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -230,7 +299,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'Dua Lipa',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -247,6 +316,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 8,
       artist: 'Drake (musician)',
       monthlyListeners: 60.92,
+      albums: [
+        {
+          name: 'Hunger Games 3',
+          cover:
+            'https://i.scdn.co/image/ab67616d00001e0284d18d0e1341f11146ce268f',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -260,7 +337,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       ],
       profile: {
         uri: 'spotify:artist:6eUKZXaKkcviH0Ku9w2n3V',
-        name: 'Ed Sheeran',
+        name: 'Drake',
         visual_xl: {
           url: 'https://i.scdn.co/image/ab6761610000e5eb12a2ef08d00dd7451a6dbed6',
           width: 640,
@@ -277,6 +354,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 9,
       artist: 'Taylor Swift',
       monthlyListeners: 58.08,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -307,6 +392,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 10,
       artist: 'Coldplay',
       monthlyListeners: 57.86,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -337,6 +430,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 11,
       artist: 'Sam Smith',
       monthlyListeners: 56.74,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -367,6 +468,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 12,
       artist: 'Doja Cat',
       monthlyListeners: 53.93,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -397,6 +506,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 13,
       artist: 'Imagine Dragons',
       monthlyListeners: 53.7,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -427,6 +544,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 14,
       artist: 'Rihanna',
       monthlyListeners: 53.41,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -457,6 +582,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 15,
       artist: 'Eminem',
       monthlyListeners: 53.35,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -487,6 +620,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 16,
       artist: 'Ariana Grande',
       monthlyListeners: 51.98,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -517,6 +658,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 17,
       artist: 'Post Malone',
       monthlyListeners: 51.78,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -547,6 +696,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 18,
       artist: 'Elton John',
       monthlyListeners: 51.53,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -577,6 +734,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 19,
       artist: 'Kanye West',
       monthlyListeners: 50.98,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
@@ -607,6 +772,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
       rank: 20,
       artist: 'Calvin Harris',
       monthlyListeners: 50.7,
+      albums: [
+        {
+          name: 'Hunger Games 2',
+          cover:
+            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+          songs: [],
+        },
+      ],
       playlist: [
         {
           uri: 'spotify:playlist:37i9dQZF1DWWxPM4nWdhyI',
