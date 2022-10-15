@@ -3,6 +3,14 @@ import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react';
 
+const options = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Key': '66ec3e99f0mshb514d6b2c37db99p166d41jsn622683dcbfe1',
+    'X-RapidAPI-Host': 'spotify81.p.rapidapi.com',
+  },
+};
+
 const hexToRGB = (hex: string, alpha: string) => {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
@@ -15,46 +23,100 @@ const hexToRGB = (hex: string, alpha: string) => {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-const getArtistData = async () => {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '66ec3e99f0mshb514d6b2c37db99p166d41jsn622683dcbfe1',
-      'X-RapidAPI-Host': 'spotify81.p.rapidapi.com',
-    },
-  };
+interface IVisual {
+  url: string;
+  width?: Number;
+  height?: Number;
+}
 
-  const response = await fetch(
-    'https://spotify81.p.rapidapi.com/artist_overview?id=2w9zwq3AktTeYYMuhMjju8',
-    options
-  );
+interface IProfile {
+  uri: string;
+  name: string;
+  visual_xl: IVisual;
+  visual_s: IVisual;
+}
+
+interface IPlaylist {
+  uri: string;
+  name: string;
+  description: string;
+  image: IVisual;
+  total_time: string
+}
+
+interface IMonthlyListeners {
+  rank: Number;
+  artist: String;
+  monthlyListeners: Number;
+  playlist: Array<IPlaylist>;
+  profile: IProfile;
+}
+
+const getArtistData = async () => {
+  const response = await fetch('http://localhost:3000/api/artist');
 
   const data = await response.json();
-  const {data :{artist}} = data;
 
-  return artist;
+  return data;
+}
+
+interface IMonthlyListeners {
+  rank: Number,
+  artist: String,
+  monthlyListeners: Number
+}
+
+const getTop20ArtistsPlaylists = async () => {
+  const top20Response = await fetch(
+    'http://localhost:3000/api/top20artists'
+  );
+
+  // [{rank: number, artist: string, monthlyListeners: number}]
+  //get artist details
+  return await top20Response.json();
 }
 
 export const getStaticProps = async () => {
      const artistData = await getArtistData();
-     return {props: {
-        artistData: artistData
-     }}
+     const top20ArtistsData = await getTop20ArtistsPlaylists();
+     return {
+       props: {
+         artistData: artistData,
+         top20ArtistsData: top20ArtistsData,
+       },
+     };
   }
 
 interface IProps {
-  artistData: any
+  artistData: any;
+  top20ArtistsData: Array<IMonthlyListeners>;
 }
 
 const Home: NextPage = (props: IProps) => {
   console.log(props.artistData);
-  const coverArtHeroSection = props.artistData.visuals.headerImage.sources[0];
-  const shadowColor = hexToRGB(
-    props.artistData.visuals.headerImage.extractedColors.colorRaw.hex,
-    '1'
-  );
-  console.log(shadowColor)
-  //shadow-[0_35px_60px_-15px_${shadowColor}]
+  console.log(props.top20ArtistsData);
+  const coverArtHeroSection = 'https://i.scdn.co/image/ab6761610000e5eb69dc893d0ea9e44a34f97cc9';
+  const listItems = props.top20ArtistsData.slice(0, 3).map((artist) => (
+    <li key={artist.rank} className='text-white w-full'>
+      <div className='flex w-full bg-[#1A1E1F] rounded-2xl'>
+        <Image
+          className={`rounded-2xl`}
+          src={artist.playlist[0].image.url}
+          alt='playlist pic'
+          width={75}
+          height={75}
+        />
+        <div className='w-2/3 flex justify-evenly grow'>
+          <div className='flex flex-col justify-center'>
+            <p className='text-sm'>{artist.playlist[0].name}</p>
+            <p className='opacity-50 text-xs'>{artist.artist}</p>
+            <p className='text-sm'>{artist.playlist[0].total_time}</p>
+          </div>
+          <Image src='/Stroke-1.svg' alt='like button' width={15} height={15} />
+        </div>
+      </div>
+    </li>
+  ));
 
   return (
     //header:- logo/ search bar
@@ -62,9 +124,9 @@ const Home: NextPage = (props: IProps) => {
     //sidebar
     // TODO: Add icons to sidebar
     //main
-    // -- hero area 
+    // -- hero area
     // TODO: Add text ontop of artist cover image
-    // -- top charts area(global charts) 
+    // -- top charts area(global charts)
     // TODO: implement chart section
     // TODO: -- new releases
     // TODO: --popular in your area(uk charts)
@@ -88,17 +150,22 @@ const Home: NextPage = (props: IProps) => {
             >
               <Image
                 className={`rounded-2xl`}
-                src={coverArtHeroSection.url}
+                src={coverArtHeroSection}
                 alt='hero section'
-                width={700}
-                height={350}
+                width={300}
+                height={300}
               />
             </div>
             <div
               id='topChartSection'
               className='w-1/2 border border-cyan-500 border-dashed'
             >
-              Chart section
+              <div className='flex flex-col h-full ml-5 justify-between'>
+                <h1 className='text-white text-2xl font-extrabold'>Top Charts</h1>
+                <ul className='flex flex-col justify-evenly items-center h-full w-3/4'>
+                  {listItems}
+                </ul>
+              </div>
             </div>
           </div>
         </article>
