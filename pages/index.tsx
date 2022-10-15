@@ -29,6 +29,24 @@ interface IVisual {
   height?: Number;
 }
 
+type IArtist = {
+  followers: number
+  genres: Array<String>
+  description: string
+  id: string
+  images: Array<IVisual>
+  name: string,
+  popularity: number,
+  type: string,
+  uri: string
+}
+
+interface IVisual {
+  url: string;
+  width?: Number;
+  height?: Number;
+}
+
 interface IProfile {
   uri: string;
   name: string;
@@ -88,14 +106,12 @@ export const getStaticProps = async () => {
   }
 
 interface IProps {
-  artistData: any;
+  artistData: Array<IArtist>;
   top20ArtistsData: Array<IMonthlyListeners>;
 }
 
 const Home: NextPage = (props: IProps) => {
-  console.log(props.artistData);
-  console.log(props.top20ArtistsData);
-  const coverArtHeroSection = 'https://i.scdn.co/image/ab6761610000e5eb69dc893d0ea9e44a34f97cc9';
+  const coverArtHeroSection = props.artistData[0].images[0].url;
   const listItems = props.top20ArtistsData.slice(0, 3).map((artist) => (
     <li key={artist.rank} className='text-white w-full'>
       <div className='flex w-full bg-[#1A1E1F] rounded-2xl'>
@@ -119,19 +135,6 @@ const Home: NextPage = (props: IProps) => {
   ));
 
   return (
-    //header:- logo/ search bar
-    //  TODO: Implement search bar functionality and styling
-    //sidebar
-    // TODO: Add icons to sidebar
-    //main
-    // -- hero area
-    // TODO: Add text ontop of artist cover image
-    // -- top charts area(global charts)
-    // TODO: implement chart section
-    // TODO: -- new releases
-    // TODO: --popular in your area(uk charts)
-    //TODO: Music Player
-    // TODO: Collection Screen
     <div className='h-screen'>
       <Header />
       <main className='h-[80%] bg-[#1D2123] border border-red-600 border-dashed'>
@@ -146,22 +149,43 @@ const Home: NextPage = (props: IProps) => {
           <div id='showbiz' className='flex h-1/2 w-full justify-between'>
             <div
               id='heroSection'
-              className='w-1/2 border border-orange-500 border-dashed flex items-center justify-center'
+              className='w-1/2 flex items-center justify-center relative'
             >
-              <Image
-                className={`rounded-2xl`}
-                src={coverArtHeroSection}
-                alt='hero section'
-                width={300}
-                height={300}
-              />
+              <div className='w-3/4 h-3/4 flex items-center relative'>
+                <Image
+                  className={`rounded-2xl w-full opacity-70`}
+                  src={coverArtHeroSection}
+                  alt='hero section'
+                  layout='fill'
+                  objectFit='fill'
+                />
+                <div className='flex flex-col h-4/5 justify-around ml-5'>
+                  <h1 className='text-white text-5xl z-10'>
+                    {props.artistData[0].name}
+                  </h1>
+                  <div className='text-white text-2xl z-10'>
+                    {props.artistData[0].genres[0]}
+                  </div>
+                  <div className='text-white text-sm z-10'>
+                    {props.artistData[0].description}
+                  </div>
+                  <div className='flex items-center w-fit justify-between'>
+                    <Image src={'/followers.svg'} alt='followers' width={50} height={50}/>
+                    <div className='text-white text-sm z-10 ml-3'>
+                      {`${Intl.NumberFormat('en-US', {
+                        notation: 'compact',
+                        maximumFractionDigits: 1,
+                      }).format(props.artistData[0].followers)} followers`}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div
-              id='topChartSection'
-              className='w-1/2 border border-cyan-500 border-dashed'
-            >
+            <div id='topChartSection' className='w-1/2'>
               <div className='flex flex-col h-full ml-5 justify-between'>
-                <h1 className='text-white text-2xl font-extrabold'>Top Charts</h1>
+                <h1 className='text-white text-2xl font-extrabold'>
+                  Top Charts
+                </h1>
                 <ul className='flex flex-col justify-evenly items-center h-full w-3/4'>
                   {listItems}
                 </ul>
