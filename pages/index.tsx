@@ -23,30 +23,6 @@ const hexToRGB = (hex: string, alpha: string) => {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
-var i = 0;
-var songlenth = 240
-var currentSongDuration = 0
-
-function move() {
-  const interval = setInterval(prograssBar, 1000)
-
-  if (currentSongDuration >= songlenth) {
-    clearInterval(interval)
-  }
-}
-
-function prograssBar(){
-  const musicBar = document.getElementById('myBar');
-  const width = (currentSongDuration/songlenth) * 100;
-
-  if (!musicBar) {
-    return;
-  }
-
-  musicBar.style.width = `${width}%`
-  currentSongDuration++;
-}
-
 interface IVisual {
   url: string;
   width?: Number;
@@ -322,7 +298,6 @@ const Home: NextPage = (props: IProps) => {
                 alt='album cover'
                 height={50}
                 width={50}
-                onClick={move}
               />
             </div>
             <div>
@@ -345,12 +320,18 @@ const Home: NextPage = (props: IProps) => {
           <div id='playbar' className='h-1/2 w-4/5 flex items-center'>
             <div
               id='myBar'
-              className='w-[0%] h-1/6 bg-[#FACD66] rounded-full border'
+              className='w-[100%] h-1/6 bg-[#FACD66] rounded-full border'
             ></div>
           </div>
         </div>
-        <div className='w-1/5'>
-          <div className='h-1/2 w-4/5 flex items-center'>
+        <div id='volumeBar' className='w-1/5'>
+          <div className='h-1/2 w-4/5 flex items-center justify-evenly'>
+            <Image 
+              src={'/volume-high.svg'}
+              alt='volume bar'
+              width={20}
+              height={20}
+            />
             <div
               className='w-1/2 h-1/6 bg-[#FACD66] rounded-full border'
             ></div>
