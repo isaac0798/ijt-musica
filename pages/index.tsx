@@ -171,7 +171,7 @@ const Home: NextPage = (props: IProps) => {
   return (
     <div className='h-screen'>
       <Header />
-      <main className='h-[80%] bg-[#1D2123] border border-red-600 border-dashed'>
+      <main className='h-[80%] bg-[#1D2123]relative'>
         <article className='h-full flex'>
           <div
             id='sideMenu'
@@ -181,12 +181,12 @@ const Home: NextPage = (props: IProps) => {
             <div id='personalNav'>personal</div>
           </div>
           <div className='w-full'>
-            <div id='showbiz' className='flex h-1/2 w-full justify-between'>
+            <div id='showbiz' className='flex h-1/2 w-full justify-evenly'>
               <div
                 id='heroSection'
-                className='w-1/2 flex items-center relative'
+                className='w-3/4 flex items-center relative'
               >
-                <div className='w-3/4 h-3/4 ml-5 flex items-center relative'>
+                <div className='w-4/5 h-4/5 ml-5 flex items-center relative'>
                   <Image
                     className={`rounded-2xl w-full opacity-70`}
                     src={coverArtHeroSection}
@@ -221,7 +221,7 @@ const Home: NextPage = (props: IProps) => {
                   </div>
                 </div>
               </div>
-              <div id='topChartSection' className='w-1/2'>
+              <div id='topChartSection' className='w-2/3'>
                 <div className='flex flex-col h-full ml-5 justify-between'>
                   <h1 className='text-white text-2xl font-extrabold'>
                     Top Charts
@@ -234,7 +234,7 @@ const Home: NextPage = (props: IProps) => {
             </div>
             <div
               id='albumBiz'
-              className='flex flex-col h-1/2 justify-between text-white overflow-y-scroll space-y-10'
+              className='flex flex-col h-2/3 justify-between text-white overflow-scroll space-y-10'
             >
               <div>
                 <div className='ml-5'>New Releases</div>
@@ -252,8 +252,27 @@ const Home: NextPage = (props: IProps) => {
           </div>
         </article>
       </main>
-      <footer className='h-[10%] border border-purple-600 border-dashed'>
-        footer
+      <footer
+        id='musicPlayer'
+        className='h-[10%] w-full border border-purple-600 border-dashed bg-transparent z-10 fixed backdrop-blur flex items-center text-white'
+      >
+        <div className='w-1/5 flex justify-evenly'>
+          <Image
+            className={'rounded-2xl'}
+            src={
+              'https://i.scdn.co/image/ab67616d00004851f4ba54b7753ad4c5f2924e53'
+            }
+            alt='album cover'
+            height={66}
+            width={66}
+          />
+          <div className='flex flex-col justify-center'>
+            <p className='text-sm'>Forever Set In Stone</p>
+            <p className='text-xs opacity-50'>Rod Wave</p>
+          </div>
+        </div>
+        <div className='w-3/5'>player</div>
+        <div className='w-1/5'>volume</div>
       </footer>
     </div>
   );
