@@ -23,6 +23,30 @@ const hexToRGB = (hex: string, alpha: string) => {
   return `rgb(${r}, ${g}, ${b})`;
 }
 
+var i = 0;
+var songlenth = 240
+var currentSongDuration = 0
+
+function move() {
+  const interval = setInterval(prograssBar, 1000)
+
+  if (currentSongDuration >= songlenth) {
+    clearInterval(interval)
+  }
+}
+
+function prograssBar(){
+  const musicBar = document.getElementById('myBar');
+  const width = (currentSongDuration/songlenth) * 100;
+
+  if (!musicBar) {
+    return;
+  }
+
+  musicBar.style.width = `${width}%`
+  currentSongDuration++;
+}
+
 interface IVisual {
   url: string;
   width?: Number;
@@ -271,8 +295,67 @@ const Home: NextPage = (props: IProps) => {
             <p className='text-xs opacity-50'>Rod Wave</p>
           </div>
         </div>
-        <div className='w-3/5'>player</div>
-        <div className='w-1/5'>volume</div>
+        <div className='w-3/5 h-full flex flex-col items-center justify-center'>
+          <div
+            id='musicControl'
+            className='flex w-1/3 h-1/2 justify-between items-center'
+          >
+            <div>
+              <Image
+                src={'/shuffle.svg'}
+                alt='album cover'
+                height={15}
+                width={15}
+              />
+            </div>
+            <div>
+              <Image
+                src={'/previous.svg'}
+                alt='album cover'
+                height={15}
+                width={15}
+              />
+            </div>
+            <div>
+              <Image
+                src={'/playbutton.svg'}
+                alt='album cover'
+                height={50}
+                width={50}
+                onClick={move}
+              />
+            </div>
+            <div>
+              <Image
+                src={'/next.svg'}
+                alt='album cover'
+                height={15}
+                width={15}
+              />
+            </div>
+            <div>
+              <Image
+                src={'/repeate-one.svg'}
+                alt='album cover'
+                height={15}
+                width={15}
+              />
+            </div>
+          </div>
+          <div id='playbar' className='h-1/2 w-4/5 flex items-center'>
+            <div
+              id='myBar'
+              className='w-[0%] h-1/6 bg-[#FACD66] rounded-full border'
+            ></div>
+          </div>
+        </div>
+        <div className='w-1/5'>
+          <div className='h-1/2 w-4/5 flex items-center'>
+            <div
+              className='w-1/2 h-1/6 bg-[#FACD66] rounded-full border'
+            ></div>
+          </div>
+        </div>
       </footer>
     </div>
   );
