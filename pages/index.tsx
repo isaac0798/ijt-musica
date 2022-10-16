@@ -150,7 +150,7 @@ const Home: NextPage = (props: IProps) => {
   const newReleases = props.top20ArtistsData.map((artist) => (
     <li
       key={artist.rank}
-      className='text-white w-max border border-dashed border-red-700 shrink-0 flex flex-col h-1/12'
+      className='text-white w-max shrink-0 flex flex-col h-1/12'
     >
       <div>
         <Image
@@ -184,9 +184,9 @@ const Home: NextPage = (props: IProps) => {
             <div id='showbiz' className='flex h-1/2 w-full justify-between'>
               <div
                 id='heroSection'
-                className='w-1/2 flex items-center justify-center relative'
+                className='w-1/2 flex items-center relative'
               >
-                <div className='w-3/4 h-3/4 flex items-center relative'>
+                <div className='w-3/4 h-3/4 ml-5 flex items-center relative'>
                   <Image
                     className={`rounded-2xl w-full opacity-70`}
                     src={coverArtHeroSection}
@@ -232,14 +232,27 @@ const Home: NextPage = (props: IProps) => {
                 </div>
               </div>
             </div>
-            <div id='albumBiz' className='flex flex-col h-1/2 text-white'>
-              <div>New Releases</div>
-              <ul className='flex overflow-y-auto space-x-5'>{newReleases}</ul>
+            <div
+              id='albumBiz'
+              className='flex flex-col h-1/2 justify-between text-white overflow-y-scroll space-y-10'
+            >
+              <div>
+                <div className='ml-5'>New Releases</div>
+                <ul className='flex overflow-y-auto space-x-5 ml-5'>
+                  {newReleases}
+                </ul>
+              </div>
+              <div>
+                <div className='ml-5'>Popular in your area</div>
+                <ul className='flex overflow-y-auto space-x-5 ml-5'>
+                  {newReleases}
+                </ul>
+              </div>
             </div>
           </div>
         </article>
       </main>
-      <footer className='h-[10%] bg-[#1D2123] border border-purple-600 border-dashed'>
+      <footer className='h-[10%] border border-purple-600 border-dashed'>
         footer
       </footer>
     </div>

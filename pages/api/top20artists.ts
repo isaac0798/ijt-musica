@@ -358,7 +358,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
         {
           name: 'Hunger Games 2',
           cover:
-            'https://i.scdn.co/image/ab67616d000048515c4e9a4183952be3f4a27d9a',
+            'https://i.scdn.co/image/ab67616d00001e025c4e9a4183952be3f4a27d9a',
           songs: [],
         },
       ],
@@ -368,7 +368,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
           name: 'This Is Taylor Swift',
           description: 'All his biggest hits, in one place.',
           image: {
-            url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
+            url: 'https://i.scdn.co/image/ab67616d00001e025c4e9a4183952be3f4a27d9a',
           },
           total_time: '1:35:32',
         },
