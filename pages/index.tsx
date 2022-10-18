@@ -2,6 +2,7 @@ import type { NextComponentType, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react';
+import { IArtist, IMonthlyListeners } from '../interfaces/interfaces';
 
 const options = {
   method: 'GET',
@@ -11,90 +12,12 @@ const options = {
   },
 };
 
-const hexToRGB = (hex: string, alpha: string) => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-
-  if (alpha) {
-    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-  }
-
-  return `rgb(${r}, ${g}, ${b})`;
-}
-
-interface IVisual {
-  url: string;
-  width?: Number;
-  height?: Number;
-}
-
-type IArtist = {
-  followers: number
-  genres: Array<String>
-  description: string
-  id: string
-  images: Array<IVisual>
-  name: string,
-  popularity: number,
-  type: string,
-  uri: string
-}
-
-interface IVisual {
-  url: string;
-  width?: Number;
-  height?: Number;
-}
-
-interface IProfile {
-  uri: string;
-  name: string;
-  visual_xl: IVisual;
-  visual_s: IVisual;
-}
-
-interface IPlaylist {
-  uri: string;
-  name: string;
-  description: string;
-  image: IVisual;
-  total_time: string
-}
-
-interface IAlbum {
-  name: string;
-  songs: Array<ISong>;
-  cover: string;
-}
-
-interface ISong {
-  name: string;
-  length: string;
-  listens: number;
-}
-
-interface IMonthlyListeners {
-  rank: Number;
-  artist: String;
-  albums: Array<IAlbum>;
-  monthlyListeners: Number;
-  playlist: Array<IPlaylist>;
-  profile: IProfile;
-}
-
 const getArtistData = async () => {
   const response = await fetch('http://localhost:3000/api/artist');
 
   const data = await response.json();
 
   return data;
-}
-
-interface IMonthlyListeners {
-  rank: Number,
-  artist: String,
-  monthlyListeners: Number
 }
 
 const getTop20ArtistsPlaylists = async () => {
