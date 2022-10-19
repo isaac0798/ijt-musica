@@ -191,6 +191,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -229,6 +230,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -267,6 +269,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -305,6 +308,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -343,6 +347,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -381,6 +386,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67616d00001e025c4e9a4183952be3f4a27d9a',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -419,6 +425,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -457,6 +464,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -495,6 +503,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -533,6 +542,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -571,6 +581,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -609,6 +620,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -647,6 +659,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -685,6 +698,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -723,6 +737,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -761,6 +776,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {
@@ -799,6 +815,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Array<
             url: 'https://i.scdn.co/image/ab67706f000000020373b03502fba84b91dac8e8',
           },
           total_time: '1:35:32',
+          songs
         },
       ],
       profile: {

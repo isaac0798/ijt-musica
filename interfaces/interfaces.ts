@@ -29,7 +29,7 @@ interface IProfile {
   visual_s: IVisual;
 }
 
-interface IPlaylist {
+export interface IPlaylist {
   uri: string;
   name: string;
   description: string;
