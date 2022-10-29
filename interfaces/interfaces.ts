@@ -46,6 +46,8 @@ interface IAlbum {
 
 export interface ISong {
   name: string;
+  album: string;
+  artist_name: string;
   duration_ms: number;
   listens: number;
   preview_url: string

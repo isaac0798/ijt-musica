@@ -1,6 +1,7 @@
 import type { NextComponentType, NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link';
 import React from 'react';
 import { IArtist, IMonthlyListeners } from '../interfaces/interfaces';
 
@@ -50,23 +51,25 @@ const Home: NextPage = (props: IProps) => {
   const coverArtHeroSection = props.artistData[0].images[0].url;
   const listItems = props.top20ArtistsData.slice(0, 3).map((artist) => (
     <li key={artist.rank} className='text-white w-full'>
-      <div className='flex w-full bg-[#1A1E1F] rounded-2xl'>
-        <Image
-          className={`rounded-2xl`}
-          src={artist.playlist[0].image.url}
-          alt='playlist pic'
-          width={75}
-          height={75}
-        />
-        <div className='w-2/3 flex justify-evenly grow'>
-          <div className='flex flex-col justify-center'>
-            <p className='text-sm'>{artist.playlist[0].name}</p>
-            <p className='opacity-50 text-xs'>{artist.artist}</p>
-            <p className='text-sm'>{artist.playlist[0].total_time}</p>
+      <Link href={'http://localhost:3000/playlists/3'}>
+        <div className='flex w-full bg-[#1A1E1F] rounded-2xl'>
+          <Image
+            className={`rounded-2xl`}
+            src={artist.playlist[0].image.url}
+            alt='playlist pic'
+            width={75}
+            height={75}
+          />
+          <div className='w-2/3 flex justify-evenly grow'>
+            <div className='flex flex-col justify-center'>
+              <p className='text-sm'>{artist.playlist[0].name}</p>
+              <p className='opacity-50 text-xs'>{artist.artist}</p>
+              <p className='text-sm'>{artist.playlist[0].total_time}</p>
+            </div>
+            <Image src='/Stroke-1.svg' alt='like button' width={15} height={15} />
           </div>
-          <Image src='/Stroke-1.svg' alt='like button' width={15} height={15} />
         </div>
-      </div>
+      </Link>
     </li>
   ));
 
