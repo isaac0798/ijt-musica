@@ -43,6 +43,8 @@ interface IProps {
 const Playlist = ({playlistData}: IProps) => {
   console.log(playlistData)
   const songList = playlistData.songs.map((song, i) => {
+    const date = new Date(song.duration_ms);
+  
     return (
       <li
         className='flex text-white items-center justify-evenly w-4/5 bg-[#313639] rounded-2xl'
@@ -58,7 +60,9 @@ const Playlist = ({playlistData}: IProps) => {
         <p className='w-1/5'>{song.name}</p>
         <p className='w-1/5'>{song.artist_name}</p>
         <p className='w-1/5'>{song.album}</p>
-        <p>{song.duration_ms}</p>
+        <p>
+          {date.getMinutes()}:{date.getSeconds()}
+        </p>
       </li>
     );
   })
